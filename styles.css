@@ -56,6 +56,14 @@ p {
     *[data-grow] {
         flex-grow: 1;
     }
+
+    .data-container {
+        animation: goInside 950ms ease;
+    }
+
+    .form-container {
+        animation: goInside 950ms 250ms ease;
+    }
 }
 
 .main-container>* {
@@ -67,6 +75,7 @@ p {
     flex-direction: column;
     height: 100%;
     padding-bottom: 0;
+    animation: goInside 750ms 250ms ease;
 }
 
 .data-container p {
@@ -75,6 +84,19 @@ p {
 
 .form-container {
     order: 1;
+    animation: goInside 750ms ease both;
+}
+
+@keyframes goInside {
+    from {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .form {
