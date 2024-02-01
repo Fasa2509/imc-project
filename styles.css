@@ -27,14 +27,20 @@ a {
 }
 
 .heart {
-    font-size: 250px;
     color: #e00;
-    animation: beat 400ms infinite alternate;
     transform-origin: center;
+    font-size: 150px;
+    animation: beat-b 400ms infinite alternate;
 }
 
 /* Heart beat animation */
 @keyframes beat {
+    to {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes beat-b {
     to {
         transform: scale(1.4);
     }
@@ -80,6 +86,11 @@ p {
 
     .form-container {
         animation: goInside 950ms 250ms ease;
+    }
+
+    .heart {
+        font-size: 250px;
+        animation: beat 400ms infinite alternate;
     }
 }
 
