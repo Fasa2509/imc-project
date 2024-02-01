@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC - Miguel Fasanella</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Calculadora IMC</h1>
+    <section class="main-container">
+
+        <div class="form-container">
+            <form class="form">
+                <h3>¡Cuida tu salud! Calcula tu IMC</h3>
+                <div class="input-container">
+                    <label for="altura">Altura (m)</label>
+                    <input required class="input" id="altura" type="text" placeholder="Altura en metros">
+                </div>
+
+                <div class="input-container">
+                    <label for="peso">Peso (Kg)</label>
+                    <input required class="input" id="peso" type="text" placeholder="Peso en kilogramos">
+                </div>
+
+                <div data-grow></div>
+
+                <input class="button" type="submit" value="Calcular">
+            </form>
+        </div>
+
+        <div class="data-container">
+            <h2>¿Qué es el IMC?</h2>
+            <p>
+                El índice de masa corporal (IMC) es un método utilizado para estimar la cantidad de grasa corporal que
+                tiene una persona,
+                y determinar por tanto si el peso está dentro del rango normal, o por el contrario, se tiene sobrepeso o
+                delgadez. Para
+                ello, se pone en relación la estatura y el peso actual del individuo. Esta fórmula matemática fue ideada
+                por el estadístico
+                belga Adolphe Quetelet, por lo que también se conoce como índice de Quetelet o Body Mass Index (BMI).
+            </p>
+
+            <div data-grow></div>
+
+            <div class="toy-container">
+                <a href="https://css-peeps.com/" data-css-peeps="pomp cheeky glasses1 turtleneck" target="_blank"></a>
+            </div>
+        </div>
+
+        <section id="modal" class="modal-container">
+            <article class="modal-info">
+                <div class="modal-close">x</div>
+                <h3>Resultados</h3>
+                <p id="imc"></p>
+                <p id="diagnostic"></p>
+                <p id="results"></p>
+            </article>
+        </section>
+
+        <!-- <button onclick="miFuncion()">Hazme Click</button> -->
+    </section>
+
+    <script>
+        const modal = document.getElementById("modal");
+        const imc = document.getElementById("imc");
+        const diagnostic = document.getElementById("diagnostic");
+        const results = document.getElementById("results");
+
+        document.querySelector("form").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let altura = Number(document.getElementById("altura").value);
+            let peso = Number(document.getElementById("peso").value);
+
+            if (isNaN(altura) || altura < 0.5) return window.alert("La altura debe ser mayor a 0.5m");
+            if (isNaN(peso) || peso < 10) return window.alert("El peso debe ser mayor a 10Kg");
+
+            // let a = parseFloat(prompt('Introduzca su altura en m: '));  // prompt pide al usuario su altura por pantalla
+            // let b = parseFloat(prompt('Introduzca su peso en kg: '));  // parseFloat convierte un texto a numerico (real)
+
+            let imcRes = peso / (altura * altura);
+            let d = ' ';
+            let text = "";
+
+            if (imcRes < 16) {
+                //ejemplo de condicional anidado
+                d = 'Infrapeso: Delgadez severa';
+                text = "Usted se encuentra en un muy bajo umbral de peso. Es recomendado que consuma alimentos altos en calorías para aumentar su peso corporal y que reduzca su actividad física."
+            } else if (16 <= imcRes && imcRes <= 16.99) {   //  && es un operador lógico equivalente a AND
+                d = 'Infrapeso: Delgadez moderada';    // en d se almacena el resultado correspondiente
+                text = "Su peso se encuentra por debajo de lo saludable. Es recomendado que consuma una cantidad moderada de proteínas y alimentos altos en calorías para aumentar un poco su masa corporal."
+            } else if (17 <= imcRes && imcRes <= 18.49) {
+                d = 'Infrapeso: Delgadez aceptable';
+                text = "Usted está levemente por debajo del peso ideal. Debería aumentar las porciones en sus comidas."
+            } else if (18.50 <= imcRes && imcRes <= 24.99) {
+                d = 'Peso normal';
+                text = "Su peso es el idóneo para su estatura."
+            } else if (25.00 <= imcRes && imcRes <= 29.99) {
+                d = 'Sobrepeso';
+                text = "Su peso se encuentra levemente por encima del recomendado. Debería reducir un poco sus raciones de comida o aumentar su actividad física."
+            } else if (30.00 <= imcRes && imcRes <= 34.99) {
+                d = 'Obeso: Tipo I';
+                text = "Usted presenta obesidad. Se recomienda disminuir sus raciones de comida y realizar ejercicios aeróbicos."
+            } else if (35.00 <= imcRes && imcRes <= 40.00) {
+                d = 'Obeso: Tipo II';
+                text = "Usted presenta obesidad. Se recomienda disminuir drásticamente sus porciones de comida y realizar una gran cantidad de ejercicio."
+            } else if (imcRes > 40.00) {
+                d = 'Obeso: Tipo III';
+                text = "Usted presenta obesidad. Asista a un nutricionista para tratar su caso."
+            }
+
+            imc.textContent = "Su IMC es de: " + imcRes.toFixed(2);
+            diagnostic.textContent = d;
+            results.textContent = text;
+
+            modal.classList.add("modal-display");
+        });
+
+        document.addEventListener("click", (event) => {
+            if (event.target.matches("#modal") || event.target.matches(".modal-close")) {
+                modal.classList.remove("modal-display");
+
+                document.getElementById("peso").value = "";
+                document.getElementById("altura").value = "";
+                document.getElementById("altura").focus();
+            }
+        });
+
+    </script>
+</body>
+
+</html>

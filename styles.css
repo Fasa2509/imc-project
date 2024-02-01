@@ -1,0 +1,230 @@
+@import url(https://unpkg.com/css-peeps@1/css-peeps.compat.css);
+
+a {
+    --peep-hat-color: #FC03C2;
+    --peep-hair-color: #7300E6;
+    --peep-skin-color: #87ceeb;
+    --peep-accessory-color: #00ff00;
+    --peep-facial-hair-color: #ffd700;
+    --peep-object-color: #ffa500;
+    --peep-clothes-color: #ff0000;
+
+    display: inline-block;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 510/463;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid var(--peep-accessory-color);
+}
+
+.toy-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+h3 {
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+}
+
+@media screen and (min-width: 990px) {
+    body {
+        height: 100dvh;
+    }
+
+    .main-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        height: calc(100% - 44px);
+    }
+
+    .form {
+        height: 100%;
+    }
+
+    *[data-grow] {
+        flex-grow: 1;
+    }
+}
+
+.main-container>* {
+    padding: 1rem;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.data-container p {
+    margin-bottom: 1rem;
+}
+
+.form-container {
+    order: 1;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: .7rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 12px -12px #2e2e2e88;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input,
+.button {
+    border: none;
+    padding: 1rem;
+    box-shadow: 0 2px 12px -10px #2e2e2e;
+    border-radius: 0.5rem;
+    transition: transform 350ms ease;
+}
+
+.input::placeholder {
+    font-size: 1rem;
+}
+
+.input:focus-visible {
+    outline: thin solid var(--secondary-color);
+    transition: transform 200ms ease;
+    transform: scale(1.02);
+}
+
+.button {
+    background-color: var(--secondary-color);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: .7rem;
+    color: white;
+    outline: thin solid var(--secondary-color);
+    transition: background-color 350ms ease, color 350ms ease;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: var(--secondary-color);
+    transition: background-color 200ms ease, color 200ms ease;
+}
+
+:root {
+    --main-color: #54dbdd;
+    --main-color-hover: rgb(78, 201, 203);
+    --secondary-color: #e55;
+    --secondary-color-hover: rgb(227, 73, 73);
+    --third-color: rgb(133, 243, 216);
+    --third-color-hover: rgb(102, 218, 189);
+    --header-height: 68px;
+    background-color: #fcfcfc;
+    font-family: 'Roboto', sans-serif;
+    color: #343434;
+}
+
+.modal-container {
+    width: 100dvw;
+    height: 100dvh;
+    background-color: #2f2f2f88;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 500ms ease;
+}
+
+.modal-display {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-info {
+    width: clamp(300px, 90%, 700px);
+    height: clamp(400px, 75%, 700px);
+    background-color: #f2f2f2;
+    position: relative;
+    padding: 1.2rem;
+    border-radius: .5rem;
+}
+
+.modal-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+#imc {
+    font-weight: 500;
+    margin-bottom: .2rem;
+}
+
+#diagnostic {
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 480px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 776px) {
+    :root {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    :root {
+        font-size: 18px;
+    }
+}
